@@ -2,6 +2,10 @@
 
 A simple desktop calculator developed in C++ using Qt.
 
+## Preview
+
+![QtCalc](assets/print.png)
+
 ## 🛠️ Technologies
 
 - C++
