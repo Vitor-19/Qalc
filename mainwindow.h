@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,12 +18,22 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void calculateKeyboard(QKeyEvent *event);
+
 private:
     Ui::MainWindow *ui;
 
     double firstNumber = 0;
     QString operation;
     bool waitSecondNumber = false;
+
+    void defineOperation(const QString &op);
+    void addNumber(const QString &number);
+    void deleteNumber();
+    void dot();
+    void equal();
 };
 
 #endif
