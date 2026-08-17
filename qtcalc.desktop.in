@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Calculadora
+Comment=Calculadora feita em Qt
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/QtCalc
+Icon=qtcalc
+Terminal=false
+Type=Application
+Categories=Utility;Calculator;
