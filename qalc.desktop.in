@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Qalc
+Comment=A simple desktop calculator developed in C++ using Qt.
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/Qalc
+Icon=Qalc
+Terminal=false
+Type=Application
+Categories=Utility;Calculator;

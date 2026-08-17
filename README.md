@@ -1,4 +1,4 @@
-# QtCalc
+# Qalc
 
 A simple desktop calculator developed in C++ using Qt.
 
