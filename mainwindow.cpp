@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QIcon>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowFlags(Qt::Window);
     resize(400, 500);
+
+    setWindowIcon(QIcon(":/assets/icon/logo.png"));
 
     // =========================
     // Numbers
