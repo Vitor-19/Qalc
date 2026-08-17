@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Calculadora</string>
+   <string>QtCalc</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
