@@ -4,7 +4,7 @@ A simple desktop calculator developed in C++ using Qt.
 
 ## Preview
 
-![QtCalc](assets/print.png)
+![Qalc](assets/print.png)
 
 ## 🛠️ Technologies
 
