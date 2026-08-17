@@ -31,7 +31,7 @@ install(TARGETS Qalc
 install(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/icon/logo.png
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256x256/apps
-    RENAME Qalc.png
+    RENAME qalc.png
 )
 
 configure_file(
@@ -41,6 +41,6 @@ configure_file(
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/Qalc.desktop
+    ${CMAKE_CURRENT_BINARY_DIR}/qalc.desktop
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
