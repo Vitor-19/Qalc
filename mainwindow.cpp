@@ -160,28 +160,18 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
 
 void MainWindow::calculateKeyboard(QKeyEvent *event){
 
-    if (event->key() == Qt::Key_Plus) {
-        defineOperation("+");
+    switch (event->key())
+    {
+    case Qt::Key_Plus: defineOperation("+"); break;
+    case Qt::Key_Minus: defineOperation("-"); break;
+    case Qt::Key_Slash: defineOperation("/"); break;
+    case Qt::Key_Asterisk: defineOperation("*"); break;
+    case Qt::Key_Backspace: deleteNumber(); break;
+    case Qt::Key_Comma: case Qt::Key_Period: dot(); break;
+    case Qt::Key_Enter: case Qt::Key_Return: equal(); break;
+    default:
+        break;
     }
-    else if (event->key() == Qt::Key_Minus){
-        defineOperation("-");
-    }
-    else if (event->key() == Qt::Key_Slash){
-        defineOperation("/");
-    }
-    else if (event->key() == Qt::Key_Asterisk){
-        defineOperation("*");
-    }
-    else if (event->key() == Qt::Key_Backspace){
-        deleteNumber();
-    }
-    else if (event->key() == Qt::Key_Comma || event->key() == Qt::Key_Period){
-        dot();
-    }
-    else if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return){
-        equal();
-    }
-    
 }
 
 void MainWindow::dot(){
