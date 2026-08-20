@@ -175,9 +175,12 @@ void MainWindow::calculateKeyboard(QKeyEvent *event){
 }
 
 void MainWindow::dot(){
-    if (!ui->display->text().contains(".")){
-            ui->display->setText(
-                ui->display->text() + "."
+    if(waitSecondNumber){
+        ui->display->setText("0.");
+        waitSecondNumber = false;
+    }
+    else if (!ui->display->text().contains(".")){
+            ui->display->setText(ui->display->text() + "."
             );
         }
 }
