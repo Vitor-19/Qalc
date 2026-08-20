@@ -149,37 +149,11 @@ void MainWindow::addNumber(const QString &number){
     // =========================
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
-    if (event->key() == Qt::Key_0){
-        addNumber("0");
-    }
-    else if (event->key() == Qt::Key_1){
-        addNumber("1");
-    }
-    else if (event->key() == Qt::Key_2){
-        addNumber("2");
-    }
-    else if (event->key() == Qt::Key_3){
-        addNumber("3");
-    }
-    else if (event->key() == Qt::Key_4){
-        addNumber("4");
-    }
-    else if (event->key() == Qt::Key_5){
-        addNumber("5");
-    }
-    else if (event->key() == Qt::Key_6){
-        addNumber("6");
-    }
-    else if (event->key() == Qt::Key_7){
-        addNumber("7");
-    }
-    else if (event->key() == Qt::Key_8){
-        addNumber("8");
-    }
-    else if (event->key() == Qt::Key_9){
-        addNumber("9");
-    }
-    else {
+    int key = event->key();
+    
+    if (key >= Qt::Key_0 && key <= Qt::Key_9) {
+        addNumber(event->text());
+    } else {
         calculateKeyboard(event);
     }
 }
