@@ -37,21 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     for (QPushButton *button : buttons){
         connect(button, &QPushButton::clicked, this, [this, button](){
-
-            QString number = button->text();
-
-            if (waitSecondNumber){
-                ui->display->setText(number);
-                waitSecondNumber = false;
-            }
-            else if (ui->display->text() == "0"){
-                ui->display->setText(number);
-            }
-            else{
-                ui->display->setText(
-                    ui->display->text() + number
-                );
-            }
+            addNumber(button->text());
         });
     }
 
@@ -109,9 +95,12 @@ MainWindow::MainWindow(QWidget *parent)
 
         ui->display->setText("0");
 
-        firstNumber= 0;
+        firstNumber = 0;
+        lastSecondNumber = 0;
         operation.clear();
-        waitSecondNumber = false;
+
+       waitSecondNumber = false;
+      isRepeatingEqual = false;
     });
 
     // =========================
@@ -123,13 +112,15 @@ MainWindow::MainWindow(QWidget *parent)
     });
 }
 
-    void MainWindow::defineOperation(const QString &op){  
-        firstNumber = ui->display->text().toDouble();
-        operation = op;
-        waitSecondNumber = true;
+void MainWindow::defineOperation(const QString &op){  
+    firstNumber = ui->display->text().toDouble();
+    operation = op;
+    waitSecondNumber = true;
+    isRepeatingEqual = false;
 }
 
 void MainWindow::addNumber(const QString &number){
+    isRepeatingEqual = false;
     if (waitSecondNumber){
         ui->display->setText(number);
         waitSecondNumber = false;
@@ -175,6 +166,7 @@ void MainWindow::calculateKeyboard(QKeyEvent *event){
 }
 
 void MainWindow::dot(){
+    isRepeatingEqual = false;
     if(waitSecondNumber){
         ui->display->setText("0.");
         waitSecondNumber = false;
@@ -198,34 +190,47 @@ void MainWindow::deleteNumber(){
 }
 
 void MainWindow::equal(){
-        double secondNumber =
-            ui->display->text().toDouble();
 
-        double result = 0;
+    if (operation.isEmpty())
+        return;
 
-        if (operation == "+"){
-            result = firstNumber + secondNumber;
+    double secondNumber;
+
+    if (isRepeatingEqual){
+        firstNumber = ui->display->text().toDouble();
+        secondNumber = lastSecondNumber;
+    }
+    else{
+        secondNumber = ui->display->text().toDouble();
+        lastSecondNumber = secondNumber;
+        isRepeatingEqual = true;
+    }
+
+    double result = 0;
+
+    if (operation == "+"){
+        result = firstNumber + secondNumber;
+    }
+    else if (operation == "-"){
+        result = firstNumber - secondNumber;
+    }
+    else if (operation == "*"){
+        result = firstNumber * secondNumber;
+    }
+    else if (operation == "/"){
+        if (secondNumber == 0){
+            ui->display->setText("Error");
+            return;
         }
-        else if (operation == "-"){
-            result = firstNumber - secondNumber;
-        }
-        else if (operation == "*"){
-            result = firstNumber * secondNumber;
-        }
-        else if (operation == "/"){
 
-            if (secondNumber == 0){
-                ui->display->setText("Error");
-                return;
-            }
+        result = firstNumber / secondNumber;
+    }
 
-            result = firstNumber / secondNumber;
-        }
-        ui->display->setText(
-            QString::number(result)
-        );
+    ui->display->setText(
+        QString::number(result)
+    );
 
-        waitSecondNumber = true;
+    waitSecondNumber = true;
 }
 
 MainWindow::~MainWindow(){

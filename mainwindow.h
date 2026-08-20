@@ -26,8 +26,10 @@ private:
     Ui::MainWindow *ui;
 
     double firstNumber = 0;
+    double lastSecondNumber = 0;
     QString operation;
     bool waitSecondNumber = false;
+    bool isRepeatingEqual = false;
 
     void defineOperation(const QString &op);
     void addNumber(const QString &number);
