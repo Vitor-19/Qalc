@@ -35,6 +35,7 @@ private:
     void addNumber(const QString &number);
     void deleteNumber();
     void dot();
+    void percentage();
     void equal();
 };
 

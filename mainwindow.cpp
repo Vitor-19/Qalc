@@ -70,11 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
         defineOperation("/");
     });
     connect(ui->btnPercentage, &QPushButton::clicked, this, [this](){
-        double percentage = ui->display->text().toDouble();
-        double percentageResult = percentage / 100;
-        ui->display->setText(
-            QString::number(percentageResult)
-        );
+        percentage();
         
     });
 
@@ -141,10 +137,10 @@ void MainWindow::addNumber(const QString &number){
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
     int key = event->key();
-    
+
     if (key >= Qt::Key_0 && key <= Qt::Key_9) {
         addNumber(event->text());
-    } else {
+    }else {
         calculateKeyboard(event);
     }
 }
@@ -157,6 +153,7 @@ void MainWindow::calculateKeyboard(QKeyEvent *event){
     case Qt::Key_Minus: defineOperation("-"); break;
     case Qt::Key_Slash: defineOperation("/"); break;
     case Qt::Key_Asterisk: defineOperation("*"); break;
+    case Qt::Key_Percent: percentage(); break;
     case Qt::Key_Backspace: deleteNumber(); break;
     case Qt::Key_Comma: case Qt::Key_Period: dot(); break;
     case Qt::Key_Enter: case Qt::Key_Return: equal(); break;
@@ -175,6 +172,14 @@ void MainWindow::dot(){
             ui->display->setText(ui->display->text() + "."
             );
         }
+}
+
+void MainWindow::percentage(){
+    double percentage = ui->display->text().toDouble();
+        double percentageResult = percentage / 100;
+        ui->display->setText(
+            QString::number(percentageResult)
+        );
 }
 
 void MainWindow::deleteNumber(){
